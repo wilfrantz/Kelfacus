@@ -8,8 +8,6 @@
 
 #include <stdio.h>
 
-
-
 double data_validation(double celcius)
 
 {

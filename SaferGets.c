@@ -6,12 +6,10 @@
 //  Copyright © 2019 Wilfrantz DEDE. All rights reserved.
 /* -------------------------------------------------------------------- */
 
-#include "SaferGets.h"
+#include "functions.h"
 
 // Function safer_gets
-
 void safer_gets (char array[], int max_chars)
-
 {
     /* Declare variables. */
     /* ------------------ */
@@ -25,15 +23,10 @@ void safer_gets (char array[], int max_chars)
     for (i = 0; i < max_chars; i++)
     {
         array[i] = getchar();
-        
-        
         /* If "this" character is the carriage return, exit loop */
         /* ----------------------------------------------------- */
-        
         if (array[i] == '\n')
-            
             break;
-        
     } /* end for */
     
     /* If we have pulled out the most we can based on the size of array, */
@@ -51,7 +44,5 @@ void safer_gets (char array[], int max_chars)
     /* -------------------------------------------------------------------- */
     
     array[i] = '\0';
-    
-    
 } // End safer_gets
 

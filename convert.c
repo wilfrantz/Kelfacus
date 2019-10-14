@@ -47,6 +47,7 @@ int main(int argc, char* argv[])
 var data_validation(var celcius)
 {
 
+    // #TODO
     // Data validation
     while (isdigit(celcius.num))
     {

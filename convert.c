@@ -5,7 +5,6 @@
 /* -------------------------------------------------------------------- */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <ctype.h>
 
 // Abstract data type definition.
@@ -14,23 +13,22 @@ typedef struct {
     char arr [100];
 } data, var;
 
-// Function declaration.
+// Functions declaration.
 int celcius_to_fahrenheit (var);
 int celcius_to_kelvin (var);
 var data_validation(var);
 
 // Main function
-int main(int argc, char* argv[])
+int main(void)
 {
     // Variable declaration
-    int i;
     var celcius ;
 
     // Prompt user for celcius value
     printf("\nPlease enter the temperature in Celcius: ");
     scanf("%f", &celcius.num);
 
-    // Data validation
+    // Data validation function call.
     data_validation(celcius);
 
     // Passing celcius value to celius_to_fahrenheit funtion.
@@ -46,10 +44,9 @@ int main(int argc, char* argv[])
 // Data validation function.
 var data_validation(var celcius)
 {
-
-    // #TODO
+    // #TODO fix data validation bug
     // Data validation
-    while (isdigit(celcius.num))
+    while (isdigit(celcius.num) != 0)
     {
         printf ("\nInvalid entry. Please try again: ");
         scanf("%f", &celcius.num);
@@ -63,7 +60,8 @@ int celcius_to_fahrenheit (var celcius)
 {
     float Fahrenheit= (celcius.num * 9/5) + 32;
 
-    printf("\nYour Temperature in Fahrenheit is : %.2lf\n", Fahrenheit);
+    printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
+
     return 0;
 }
 
@@ -71,7 +69,7 @@ int celcius_to_fahrenheit (var celcius)
 int celcius_to_kelvin (var celcius)
 {
     float kelvin = celcius.num + 273.15;
-    printf("\nYour Temperature in Kelvin is : %.2lf\n", kelvin);
+    printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
 
     return 0;
 }

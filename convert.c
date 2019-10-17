@@ -46,7 +46,8 @@ var data_validation(var celcius)
 {
     // #TODO fix data validation bug
     // Data validation
-    while (isdigit(celcius.num) != 0)
+    int x = isdigit(celcius.num);
+    while ( x != 0)
     {
         printf ("\nInvalid entry. Please try again: ");
         scanf("%f", &celcius.num);
@@ -58,8 +59,9 @@ var data_validation(var celcius)
 // celcius to Fahrenheit function definition.
 int celcius_to_fahrenheit (var celcius)
 {
+    // local varible declaration
     float Fahrenheit= (celcius.num * 9/5) + 32;
-
+    // send to stdout
     printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
 
     return 0;
@@ -68,7 +70,9 @@ int celcius_to_fahrenheit (var celcius)
 // celcius to Kelvin function definition.
 int celcius_to_kelvin (var celcius)
 {
+    // local variable declaration.
     float kelvin = celcius.num + 273.15;
+    // send to stdout
     printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
 
     return 0;

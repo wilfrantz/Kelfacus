@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include<stdlib.h>
 
 // Abstract data type definition.
 typedef struct {
@@ -13,6 +14,14 @@ typedef struct {
     char arr [100];
 } data, var;
 
+
+// simple helper-function to empty stdin.
+void empty_stdin (void){
+    // local variable
+    int c = getchar();
+
+    while (c != '\n' && c != EOF)c = getchar();
+}
 // Functions declaration.
 int celcius_to_fahrenheit (var);
 int celcius_to_kelvin (var);
@@ -21,46 +30,64 @@ var data_validation(var);
 // Main function
 int main(void)
 {
-    // Variable declaration
+    // Local variable to hold user input (celcius initial value).
     var celcius ;
 
     // Prompt user for celcius value
     printf("\nPlease enter the temperature in Celcius: ");
-    scanf("%f", &celcius.num);
+    int rtn = scanf("%f", &celcius.num);
 
-    // Data validation function call.
-    data_validation(celcius);
+    do {
+        // Data validation.
+        if (rtn == EOF) {   /* user generates manual EOF */
+            fputs ("(user canceled input.)\n", stderr);
+            return 1;
+        }
+        else if (rtn == 0) {    /* matching failure */
+            fputs (" Error: invalid entry, try again\n", stderr);
+            empty_stdin();
+            return 2;
 
-    // Passing celcius value to celius_to_fahrenheit funtion.
-    celcius_to_fahrenheit(celcius);
+        } else {  /* good input */
+            empty_stdin();
 
-    // Passing celcius value to celcius_to_kelvin function.
-    celcius_to_kelvin (celcius);
 
+
+            // Data validation function call.
+            //    var Celvalues = data_validation(celcius);
+
+            // Passing celcius value to celius_to_fahrenheit funtion.
+            celcius_to_fahrenheit(celcius);
+
+            // Passing celcius value to celcius_to_kelvin function.
+            celcius_to_kelvin (celcius);
+        }
+    } while( rtn == 0 );
     return 0;
 
 } // End main
 
+
 // Data validation function.
-var data_validation(var celcius)
+var data_validation(var Celvalues)
 {
-    // #TODO fix data validation bug
+    // #TODO fix data validation infinite loop bug
     // Data validation
-    int x = isdigit(celcius.num);
-    while ( x != 0)
+
+    while (Celvalues.num == 0)
     {
-        printf ("\nInvalid entry. Please try again: ");
-        scanf("%f", &celcius.num);
+        printf("\nInvalid entry, please try again: ");
+        scanf("%f", &Celvalues.num);
     }
 
-    return celcius;
+    return Celvalues;
 }
 
 // celcius to Fahrenheit function definition.
-int celcius_to_fahrenheit (var celcius)
+int celcius_to_fahrenheit (var Celvalues)
 {
     // local varible declaration
-    float Fahrenheit= (celcius.num * 9/5) + 32;
+    float Fahrenheit= (Celvalues.num * 9/5) + 32;
     // send to stdout
     printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
 
@@ -68,10 +95,10 @@ int celcius_to_fahrenheit (var celcius)
 }
 
 // celcius to Kelvin function definition.
-int celcius_to_kelvin (var celcius)
+int celcius_to_kelvin (var Celvalues)
 {
     // local variable declaration.
-    float kelvin = celcius.num + 273.15;
+    float kelvin = Celvalues.num + 273.15;
     // send to stdout
     printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
 

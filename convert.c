@@ -15,45 +15,29 @@ typedef struct {
 } data, var;
 
 
-// simple helper-function to empty stdin.
-void empty_stdin (void){
-    // local variable
-    int c = getchar();
-
-    while (c != '\n' && c != EOF) c = getchar();
-}
 // Functions declaration.
 int celcius_to_fahrenheit (var);
 int celcius_to_kelvin (var);
-var data_validation(var);
+var data_validation(var, int);
 
 // Main function
 int main(void)
 {
-    // Local variable to hold user input (celcius initial value).
+    // Local variable to store user input (celcius initial value).
     var celcius ;
 
     // Prompt user for celcius value
     printf("\nPlease enter the temperature in Celcius: ");
-    scanf("%f", &celcius.num);
-
-    // Data validation.
-    while () {   /* user generates manual EOF */
-        printf("\nInvalid entry, please try again: ");
-        scanf("%f", &celcius.num);
-    }
-    empty_stdin();
-
-
+    int rtn = scanf("%f", &celcius.num);
 
     // Data validation function call.
-    //    var Celvalues = data_validation(celcius);
+    var Celvalues = data_validation(celcius, rtn);
 
     // Passing celcius value to celius_to_fahrenheit funtion.
-    celcius_to_fahrenheit(celcius);
+    celcius_to_fahrenheit(Celvalues);
 
     // Passing celcius value to celcius_to_kelvin function.
-    celcius_to_kelvin (celcius);
+    celcius_to_kelvin (Celvalues);
 
     return 0;
 
@@ -61,15 +45,21 @@ int main(void)
 
 
 // Data validation function.
-var data_validation(var Celvalues)
+var data_validation(var Celvalues, int status)
 {
-    // #TODO fix data validation infinite loop bug
-    // Data validation
-
-    while (Celvalues.num == 0)
-    {
+    // Local variable declaration.
+    int temp, count = 0;
+    // Data validation.
+    while (status!= 1) {   /* user generates manual EOF */
+        while((temp=getchar()) != EOF && temp != '\n');
         printf("\nInvalid entry, please try again: ");
-        scanf("%f", &Celvalues.num);
+        status = scanf("%f", &Celvalues.num);
+        count++;
+    }
+
+    if ( count > 5 ){
+        printf("\nYou have exceeded the number of attampts.");
+        exit(2);
     }
 
     return Celvalues;

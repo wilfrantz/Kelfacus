@@ -14,7 +14,6 @@ typedef struct {
     char arr [100];
 } data, var;
 
-
 // Functions declaration.
 int celcius_to_fahrenheit (var);
 int celcius_to_kelvin (var);
@@ -43,8 +42,9 @@ int main(void)
 
 } // End main
 
-
-// Data validation function.
+// Data validation function takes in the user input
+// and an integer which is the return staus of the 
+// scanf function for data processing.
 var data_validation(var Celvalues, int status)
 {
     // Local variable declaration.
@@ -52,14 +52,16 @@ var data_validation(var Celvalues, int status)
     // Data validation.
     while (status!= 1) {   /* user generates manual EOF */
         while((temp=getchar()) != EOF && temp != '\n');
-        printf("\nInvalid entry, please try again: ");
+        printf("\n==>\tInvalid entry, please try again: ");
         status = scanf("%f", &Celvalues.num);
         count++;
-    }
 
-    if ( count > 5 ){
-        printf("\nYou have exceeded the number of attampts.");
-        exit(2);
+        // After 4 attempts, program prompts user with 
+        // an error message and exit. (Notice, the attempt from the driver test.)
+        if (count == 3){
+            printf("\nYou have exceeded the number of allowed attempts.\n");
+            exit(2);
+        }
     }
 
     return Celvalues;

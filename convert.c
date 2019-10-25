@@ -20,7 +20,7 @@ void empty_stdin (void){
     // local variable
     int c = getchar();
 
-    while (c != '\n' && c != EOF)c = getchar();
+    while (c != '\n' && c != EOF) c = getchar();
 }
 // Functions declaration.
 int celcius_to_fahrenheit (var);
@@ -35,34 +35,26 @@ int main(void)
 
     // Prompt user for celcius value
     printf("\nPlease enter the temperature in Celcius: ");
-    int rtn = scanf("%f", &celcius.num);
+    scanf("%f", &celcius.num);
 
-    do {
-        // Data validation.
-        if (rtn == EOF) {   /* user generates manual EOF */
-            fputs ("(user canceled input.)\n", stderr);
-            return 1;
-        }
-        else if (rtn == 0) {    /* matching failure */
-            fputs (" Error: invalid entry, try again\n", stderr);
-            empty_stdin();
-            return 2;
-
-        } else {  /* good input */
-            empty_stdin();
+    // Data validation.
+    while () {   /* user generates manual EOF */
+        printf("\nInvalid entry, please try again: ");
+        scanf("%f", &celcius.num);
+    }
+    empty_stdin();
 
 
 
-            // Data validation function call.
-            //    var Celvalues = data_validation(celcius);
+    // Data validation function call.
+    //    var Celvalues = data_validation(celcius);
 
-            // Passing celcius value to celius_to_fahrenheit funtion.
-            celcius_to_fahrenheit(celcius);
+    // Passing celcius value to celius_to_fahrenheit funtion.
+    celcius_to_fahrenheit(celcius);
 
-            // Passing celcius value to celcius_to_kelvin function.
-            celcius_to_kelvin (celcius);
-        }
-    } while( rtn == 0 );
+    // Passing celcius value to celcius_to_kelvin function.
+    celcius_to_kelvin (celcius);
+
     return 0;
 
 } // End main

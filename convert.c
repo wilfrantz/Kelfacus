@@ -1,7 +1,7 @@
 
 
 /* -------------------------------------------------------------------- */
-//  Basic C program that converts Celcius to Fahrenheit and Kelvin.
+//  Basic C program that converts celsius to Fahrenheit and Kelvin.
 /* -------------------------------------------------------------------- */
 
 #include <stdio.h>
@@ -15,28 +15,28 @@ typedef struct {
 } data, var;
 
 // Functions declaration.
-int celcius_to_fahrenheit (var);
-int celcius_to_kelvin (var);
+int celsius_to_fahrenheit (var);
+int celsius_to_kelvin (var);
 var data_validation(var, int);
 
 // Main function
 int main(void)
 {
-    // Local variable to store user input (celcius initial value).
-    var celcius ;
+    // Local variable to store user input (celsius initial value).
+    var celsius ;
 
-    // Prompt user for celcius value
-    printf("\nPlease enter the temperature in Celcius: ");
-    int rtn = scanf("%f", &celcius.num);
+    // Prompt user for celsius value
+    printf("\nPlease enter the temperature in celsius: ");
+    int rtn = scanf("%f", &celsius.num);
 
     // Data validation function call.
-    var Celvalues = data_validation(celcius, rtn);
+    var Celvalues = data_validation(celsius, rtn);
 
-    // Passing celcius value to celius_to_fahrenheit funtion.
-    celcius_to_fahrenheit(Celvalues);
+    // Passing celsius value to celius_to_fahrenheit funtion.
+    celsius_to_fahrenheit(Celvalues);
 
-    // Passing celcius value to celcius_to_kelvin function.
-    celcius_to_kelvin (Celvalues);
+    // Passing celsius value to celsius_to_kelvin function.
+    celsius_to_kelvin (Celvalues);
 
     return 0;
 
@@ -67,19 +67,23 @@ var data_validation(var Celvalues, int status)
     return Celvalues;
 }
 
-// celcius to Fahrenheit function definition.
-int celcius_to_fahrenheit (var Celvalues)
+// celsius to Fahrenheit function takes in the returned 
+// value from data validation function to convert it to
+// Fahrenheit and send the result to stdout.
+int celsius_to_fahrenheit (var Celvalues)
 {
-    // local varible declaration
-    float Fahrenheit= (Celvalues.num * 9/5) + 32;
+    // local variable declaration
+    float Fahrenheit = (Celvalues.num * 9/5) + 32;
     // send to stdout
     printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
 
     return 0;
 }
 
-// celcius to Kelvin function definition.
-int celcius_to_kelvin (var Celvalues)
+// celsius to Kelvin function takes in the returned 
+// value from data validation function to convert it to
+// Kelvin and send the result to stdout
+int celsius_to_kelvin (var Celvalues)
 {
     // local variable declaration.
     float kelvin = Celvalues.num + 273.15;

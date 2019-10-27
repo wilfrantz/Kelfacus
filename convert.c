@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 // Abstract data type definition.
 typedef struct {

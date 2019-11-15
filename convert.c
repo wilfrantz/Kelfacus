@@ -30,9 +30,9 @@ int main(int argc, char** argv)
     /*
        current command line arguments:
 
-       -c Celcius         User's first name ("Sean" is default)
-       -f Fahrenheit         integer month (default is "1" for January) 
-       -k Kelvin          integer age (default is "39" :) )
+       -c Celcius         Celsius value.
+       -f Fahrenheit      Fahrenheit value .
+       -k Kelvin          Kwlvim value
        */
 
     if (argc > maxarg){

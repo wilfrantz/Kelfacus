@@ -6,73 +6,67 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define maxarg 3
 // Abstract data type definition.
 typedef struct {
     float num;
     int n;
-    //    char arr [100];
 } data, var;
 
 // Functions declaration.
-int celsius_to_fahrenheit (var);
-int celsius_to_kelvin (var);
+int Convert_from_Celcius(var);
+var data_validation(var);
 int print (var, var, var);
-var data_validation(var, int);
-
 // Main function
 int main(int argc, char** argv)
 {
-    // Local variable to store user input (celsius initial value).
-    var celsius, kelvin, Fahrenheit;
+    // Local variable to store user input.
+    var Celsius, Kelvin, Fahrenheit, Tempvalues;
 
     /*
        current command line arguments:
-
+       -------------------------------------
        -c Celcius         Celsius value.
        -f Fahrenheit      Fahrenheit value .
-       -k Kelvin          Kwlvim value
+       -k Kelvin          Kelvin value
        */
 
     if (argc > maxarg){
-        printf("Usage: %s -c Celcius or -f Fahrenheit -k Kelvin ]\n",argv[0]);
+        printf("\nUsage: %s -c Celcius or -f Fahrenheit -k Kelvin ]\n",argv[0]);
         exit(1);
     }
 
     for (int i = 1; i < argc; i+=2) {
         /* check for valid flags (first char should be '-' for flags) */
         if (argv[i][0]!='-') {
-            printf("bad option character...should be \"-\"\n");
+            printf("\nbad option character...should be \"-\"\n");
             exit(2);
         }
 
         /* check for valid flag value and take appropriate action */
         switch (argv[i][1]) {
-            case 'c': celsius.num = atoi(argv[i+1]);
+            case 'c': Celsius.num = atof(argv[i+1]);
+                      // Data validation function call.
+                      Tempvalues = data_validation(Celsius);
+                      // Passing celsius value to
+                      // Convert_from_Celcius funtion.
+                      Convert_from_Celcius(Tempvalues);
                       break;
-            case 'f': Fahrenheit.num = atoi(argv[i+1]);
+            case 'f': Fahrenheit.num = atof(argv[i+1]);
+                      // Data validation function call.
+                      Tempvalues = data_validation(Fahrenheit);
                       break;
-            case 'k': kelvin.num = atoi(argv[i+1]);
+            case 'k': Kelvin.num = atof(argv[i+1]);
+                      // Data validation function call.
+                      Tempvalues = data_validation(Kelvin);
                       break;
-            default: printf("bad option...should be \"c\" or \"f\" or \"k\"\n");
+            default: printf("\nbad option...should be \"-c\" or \"-f\" or \"-k\"\n");
                      exit(3);
                      break;
         }
     }
-    // 
-    // Prompt user for celsius value
-    printf("\nPlease enter the temperature in celsius: ");
-    int rtn = scanf("%f", &celsius.num);
-
-    // Data validation function call.
-    var Celvalues = data_validation(celsius, rtn);
-
-    // Passing celsius value to celius_to_fahrenheit funtion.
-    celsius_to_fahrenheit(Celvalues);
-
-    // Passing celsius value to celsius_to_kelvin function.
-    celsius_to_kelvin (Celvalues);
 
     return 0;
 
@@ -81,37 +75,35 @@ int main(int argc, char** argv)
 // Data validation function takes in the user input
 // and an integer which is the return staus of the 
 // scanf function for data processing.
-var data_validation(var Celvalues, int status)
+var data_validation(var value)
 {
-    // Local variable declaration.
-    int temp, count = 0;
+    char answer;
     // Data validation.
-    while (status!= 1) { 
-        while((temp=getchar()) != EOF && temp != '\n');
-        printf("\n==>\tInvalid entry, please try again: ");
-        status = scanf("%f", &Celvalues.num);
-        count++;
-
-        // After 3 attempts, program prompts user with 
-        // an error message and exit. (Notice, the attempt from the driver test.)
-        if (count == 2){
-            printf("\nYou have exceeded the number of allowed attempts.\n");
-            exit(2);
-        }
+    if (value.num == 0) { 
+        printf("\nProvided value is equal to 0");
+        printf("\nDo you want to continue?(y/n): ");
+        scanf("%c", &answer);
     }
-
-    return Celvalues;
+    if (toupper(answer) == 'N'){
+        exit(3);
+    }else{
+        return value;
+    }
 }
 
 // celsius to Fahrenheit function takes in the returned 
 // value from data validation function to convert it to
 // Fahrenheit and send the result to stdout.
-int celsius_to_fahrenheit (var Celvalues)
+int Convert_from_Celcius(Tempvalues)
 {
     // local variable declaration
-    float Fahrenheit = (Celvalues.num * 9/5) + 32;
+    float Fahrenheit = (Tempvalues.num * 9/5) + 32;
     // send to stdout
     printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
+
+    float kelvin = Tempvalues.num + 273.15;
+    // send to stdout
+    printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
 
     return 0;
 }
@@ -119,10 +111,10 @@ int celsius_to_fahrenheit (var Celvalues)
 // celsius to Kelvin function takes in the returned 
 // value from data validation function to convert it to
 // Kelvin and send the result to stdout
-int celsius_to_kelvin (var Celvalues)
+int celsius_to_kelvin (var Tempvalues)
 {
     // local variable declaration.
-    float kelvin = Celvalues.num + 273.15;
+    float kelvin = Tempvalues.num + 273.15;
     // send to stdout
     printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
 

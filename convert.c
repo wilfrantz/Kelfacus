@@ -5,26 +5,62 @@
 /* -------------------------------------------------------------------- */
 
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
 
+#define maxarg 3
 // Abstract data type definition.
 typedef struct {
     float num;
-    char arr [100];
+    int n;
+    //    char arr [100];
 } data, var;
 
 // Functions declaration.
 int celsius_to_fahrenheit (var);
 int celsius_to_kelvin (var);
+int print (var, var, var);
 var data_validation(var, int);
 
 // Main function
-int main(void)
+int main(int argc, char** argv)
 {
     // Local variable to store user input (celsius initial value).
-    var celsius ;
+    var celsius, kelvin, Fahrenheit;
 
+    /*
+       current command line arguments:
+
+       -c Celcius         User's first name ("Sean" is default)
+       -f Fahrenheit         integer month (default is "1" for January) 
+       -k Kelvin          integer age (default is "39" :) )
+       */
+
+    if (argc > maxarg){
+        printf("Usage: %s -c Celcius or -f Fahrenheit -k Kelvin ]\n",argv[0]);
+        exit(1);
+    }
+
+    for (int i = 1; i < argc; i+=2) {
+        /* check for valid flags (first char should be '-' for flags) */
+        if (argv[i][0]!='-') {
+            printf("bad option character...should be \"-\"\n");
+            exit(2);
+        }
+
+        /* check for valid flag value and take appropriate action */
+        switch (argv[i][1]) {
+            case 'c': celsius.num = atoi(argv[i+1]);
+                      break;
+            case 'f': Fahrenheit.num = atoi(argv[i+1]);
+                      break;
+            case 'k': kelvin.num = atoi(argv[i+1]);
+                      break;
+            default: printf("bad option...should be \"c\" or \"f\" or \"k\"\n");
+                     exit(3);
+                     break;
+        }
+    }
+    // 
     // Prompt user for celsius value
     printf("\nPlease enter the temperature in celsius: ");
     int rtn = scanf("%f", &celsius.num);
@@ -50,15 +86,15 @@ var data_validation(var Celvalues, int status)
     // Local variable declaration.
     int temp, count = 0;
     // Data validation.
-    while (status!= 1) {   /* user generates manual EOF */
+    while (status!= 1) { 
         while((temp=getchar()) != EOF && temp != '\n');
         printf("\n==>\tInvalid entry, please try again: ");
         status = scanf("%f", &Celvalues.num);
         count++;
 
-        // After 4 attempts, program prompts user with 
+        // After 3 attempts, program prompts user with 
         // an error message and exit. (Notice, the attempt from the driver test.)
-        if (count == 3){
+        if (count == 2){
             printf("\nYou have exceeded the number of allowed attempts.\n");
             exit(2);
         }
@@ -92,3 +128,7 @@ int celsius_to_kelvin (var Celvalues)
 
     return 0;
 }
+
+// The print function display to stdout. It receives the value
+// of Celcius, Fahrenheit and Kelvin, create a simple table and 
+// print out to the screen.

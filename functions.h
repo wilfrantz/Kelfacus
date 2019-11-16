@@ -7,5 +7,4 @@ int Convert_from_Fahrenheit(var);
 int Convert_from_Kelvin(var);
 int Convert_from_Celcius(var);
 var data_validation(var);
-int print (float, float, var);
 

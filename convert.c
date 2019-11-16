@@ -8,17 +8,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define maxarg 3
-// Abstract data type definition.
-typedef struct {
-    float num;
-    int n;
-} data, var;
+#include "functions.h"
 
-// Functions declaration.
-int Convert_from_Celcius(var);
-var data_validation(var);
-int print (var, var, var);
+// Defince max number of
+// command line arguments.
+#define maxarg 3
+
 // Main function
 int main(int argc, char** argv)
 {
@@ -57,10 +52,12 @@ int main(int argc, char** argv)
             case 'f': Fahrenheit.num = atof(argv[i+1]);
                       // Data validation function call.
                       Tempvalues = data_validation(Fahrenheit);
+                      Convert_from_Fahrenheit(Tempvalues);
                       break;
             case 'k': Kelvin.num = atof(argv[i+1]);
                       // Data validation function call.
                       Tempvalues = data_validation(Kelvin);
+                      Convert_from_Kelvin(Tempvalues);
                       break;
             default: printf("\nbad option...should be \"-c\" or \"-f\" or \"-k\"\n");
                      exit(3);
@@ -81,46 +78,17 @@ var data_validation(var value)
     // Data validation.
     if (value.num == 0) { 
         printf("\nProvided value is equal to 0");
-        printf("\nDo you want to continue?(y/n): ");
+        printf("\nDo you want to continue? (Y/N): ");
         scanf("%c", &answer);
     }
-    if (toupper(answer) == 'N'){
-        exit(3);
-    }else{
+    if (toupper(answer) == 'Y'){
         return value;
+    }else if (toupper(answer) == 'N'){
+        printf("\nProgram terminated\n");
+        exit(0);
+    }else {
+        printf("\nWrong entry, exit with error.\n");
+        exit(3);
     }
+
 }
-
-// celsius to Fahrenheit function takes in the returned 
-// value from data validation function to convert it to
-// Fahrenheit and send the result to stdout.
-int Convert_from_Celcius(Tempvalues)
-{
-    // local variable declaration
-    float Fahrenheit = (Tempvalues.num * 9/5) + 32;
-    // send to stdout
-    printf("\nYour temperature in Fahrenheit is : %.2lf°F\n", Fahrenheit);
-
-    float kelvin = Tempvalues.num + 273.15;
-    // send to stdout
-    printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
-
-    return 0;
-}
-
-// celsius to Kelvin function takes in the returned 
-// value from data validation function to convert it to
-// Kelvin and send the result to stdout
-int celsius_to_kelvin (var Tempvalues)
-{
-    // local variable declaration.
-    float kelvin = Tempvalues.num + 273.15;
-    // send to stdout
-    printf("\nYour temperature in Kelvin is : %.2lf°K\n", kelvin);
-
-    return 0;
-}
-
-// The print function display to stdout. It receives the value
-// of Celcius, Fahrenheit and Kelvin, create a simple table and 
-// print out to the screen.

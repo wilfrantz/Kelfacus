@@ -17,8 +17,7 @@ int Convert_from_Kelvin(var Tempvalues){
 
     // write to stdout
     printf("\n\n");
-    printf("\n\tCelcius \t Fahrenheit \t Kelvin");
-    printf("\n\t%.2f \t\t %.2f \t\t %.2f\n", celcius, fahrenheit, Tempvalues.num);
+    printf("\n\tCelcius: %.2f \n\tFahrenheit: %.2f \n\tKelvin: %.f\n", celcius, fahrenheit, Tempvalues.num);
 
 
     return 0;

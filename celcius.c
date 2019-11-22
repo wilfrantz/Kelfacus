@@ -6,18 +6,22 @@
 // value from data validation function to convert it to
 // Fahrenheit and send the result to stdout.
 int Convert_from_Celcius(var Tempvalues){
-    
+
     // Get Fahrenheit value.
-    float Fahrenheit = (Tempvalues.num * 9/5) + 32;
+    var Fahrenheit;
+    Fahrenheit.num = (Tempvalues.num * 9/5) + 32;
 
     // Get the Kelvin value
-    float kelvin = Tempvalues.num + 273.15;
+    var kelvin;
+    kelvin.num = Tempvalues.num + 273.15;
 
+    // Print function call.
+    print(Tempvalues, Fahrenheit, kelvin);
+    /*
     // write to stdout
     printf("\n\n");
-    printf("\n\tCelcius \t Fahrenheit \t Kelvin");
-    printf("\n\t%.2f \t\t %.2f \t\t %.2f\n", Tempvalues.num, Fahrenheit, kelvin);
-
+    printf("\n\tCelcius: %.2f \n\tFahrenheit: %.2f \n\tKelvin: %.f\n", Tempvalues.num, Fahrenheit.num, kelvin.num);
+    */
     return 0;
 }
 

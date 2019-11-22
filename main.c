@@ -29,7 +29,7 @@ int main(int argc, char** argv)
        */
 
     if (argc != maxarg){
-        printf("\nUsage: %s -c Celcius or -f Fahrenheit -k Kelvin ]\n",argv[0]);
+        printf("\nUsage: %s -c Celcius or -f Fahrenheit or -k Kelvin ]\n",argv[0]);
         exit(1);
     }
 

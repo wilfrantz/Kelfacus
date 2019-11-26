@@ -10,18 +10,15 @@ int Convert_from_Fahrenheit(var Tempvalues){
 
     // Get Celcius value.
     // Formula	(32°F − 32) × 5/9 = 0°C
-    float celcius = (Tempvalues.num - 32) * 5/9 ;
+    var celcius, kelvin; 
+    celcius.num = (Tempvalues.num - 32) * 5/9 ;
 
     // Get the Kelvin value
     // Formula	(32°F − 32) × 5/9 + 273.15 = 273.15K
-    float kelvin = (Tempvalues.num - 32) * 5/9 + 273.15;
+        kelvin.num = (Tempvalues.num - 32) * 5/9 + 273.15;
 
     // Print function call.
-    print(Tempvalues, Fahrenheit, kelvin);
-
-    // write to stdout
-    printf("\n\n");
-    printf("\n\tCelcius: %.2f \n\tFahrenheit: %.2f \n\tKelvin: %.f\n", celcius, Tempvalues.num, kelvin);
+    print(celcius, Tempvalues, kelvin);
 
     return 0;
 }

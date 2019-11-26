@@ -17,11 +17,7 @@ int Convert_from_Celcius(var Tempvalues){
 
     // Print function call.
     print(Tempvalues, Fahrenheit, kelvin);
-    /*
-    // write to stdout
-    printf("\n\n");
-    printf("\n\tCelcius: %.2f \n\tFahrenheit: %.2f \n\tKelvin: %.f\n", Tempvalues.num, Fahrenheit.num, kelvin.num);
-    */
+
     return 0;
 }
 

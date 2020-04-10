@@ -1,5 +1,5 @@
 convert: print.o celcius.o kelvin.o validation.o fahrenheit.o main.o
-	gcc main.c print.c celcius.c kelvin.c validation.c fahrenheit.c -o kelfacus
+	gcc main.c print.c celcius.c kelvin.c validation.c fahrenheit.c -g -o kelfacus
 
 celcius.o: celcius.c
 	gcc -c celcius.c

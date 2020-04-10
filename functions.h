@@ -1,3 +1,4 @@
+
 #include "data.h"
 
 // Functions declaration.

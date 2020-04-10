@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <cstdlib>
 
 #include "data.h"
 

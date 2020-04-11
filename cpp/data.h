@@ -13,16 +13,16 @@ class Var {
 
 	public:	
 		// Setter functions
-		void setCelcius(float cel) {celcius = cel ; }
-		void setFahrenheit (float fa){fahrenheit = fa; }
-		void setKelvin (float kel){kelvin = kel; }
+		void setCelcius(float celcius) {this->celcius = celcius ; }
+		void setFahrenheit (float fahrenheit){this->fahrenheit = fahrenheit; }
+		void setKelvin (float kelvin){this->kelvin = kelvin; }
 
 		// Getter functions
 		float getCelcius(){return celcius; }
 		float getFahrenheit(){return fahrenheit; }
 		float getKelvin(){return kelvin; }
 
-		// Functions declaration.
+		// Member functions declaration.
 		int Convert_from_Fahrenheit(std::string);
 		int Convert_from_Kelvin(std::string);
 		int print (Var*);

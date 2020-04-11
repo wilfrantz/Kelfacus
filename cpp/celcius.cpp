@@ -10,13 +10,13 @@
 #include "data.h"
 
 
-int Convert_from_Celcius(char* arg){
+int Var::Convert_from_Celcius(std::string arg){
 
 	// Class Var object.
 	Var obj;
 
 	// Set Celcius value.
-	obj.setCelcius(atof(arg));
+	obj.setCelcius(stof(arg));
 
 	// Get Fahrenheit value
 	obj.setFahrenheit ((obj.getCelcius() * 9/5) + 32);
@@ -25,7 +25,7 @@ int Convert_from_Celcius(char* arg){
 	obj.setKelvin (obj.getCelcius() + 273.15);
 
 	// print function call.
-	print(&obj);
+	obj.print(&obj);
 
 	return 0;
 }

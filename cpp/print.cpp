@@ -3,7 +3,7 @@
 
 #include "data.h"
 
-int print (Var* obj_Ptr){
+int Var::print (Var* obj_Ptr){
 
     // write to stdout
     std::cout << std::endl;

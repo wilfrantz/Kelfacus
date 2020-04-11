@@ -1,18 +1,21 @@
 
+/* Fahreneit.cpp: 
+ * Convert_from_Fahrenheit function takes in the returned 
+ * value from data validation function to convert it to
+ * Kelvin and send the result to stdout
+ * */
 
 #include <iostream>
 
 #include "data.h"
 
-// celsius to Kelvin function takes in the returned 
-// value from data validation function to convert it to
-// Kelvin and send the result to stdout
-int Convert_from_Fahrenheit(char* arg){
-// class object.
-Var obj;
+int Var::Convert_from_Fahrenheit(std::string arg){
+
+    // class object.
+    Var obj;
 
     // set Fahreneit value.
-    obj.setFahrenheit(atof(arg));
+    obj.setFahrenheit(stof(arg));
 
     // Get Celcius value Formula (32°F − 32) × 5/9 = 0°C
     obj.setCelcius((obj.getFahrenheit() - 32) * 5/9);
@@ -22,7 +25,7 @@ Var obj;
     obj.setKelvin((obj.getFahrenheit() - 32) * 5/9 + 273.15);
 
     // print function call.
-    print(&obj);
+    obj.print(&obj);
 
 
     return 0;

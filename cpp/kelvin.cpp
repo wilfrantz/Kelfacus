@@ -7,13 +7,13 @@
 // celsius to Kelvin function takes in the returned 
 // value from data validation function to convert it to
 // Kelvin and send the result to stdout
-int Convert_from_Kelvin(char* arg){
+int Var::Convert_from_Kelvin(std::string arg){
 
     // Class object
     Var obj;
 
     // set Kelvin value
-    obj.setKelvin(atof(arg));
+    obj.setKelvin(stof(arg));
 
     // Set Celcius value.
     obj.setCelcius (obj.getKelvin() - 273.15);
@@ -23,7 +23,7 @@ int Convert_from_Kelvin(char* arg){
     obj.setFahrenheit((obj.getKelvin() - 273.15) * 9/5 + 32);
 
     // Print function call.
-    print(&obj);
+    obj.print(&obj);
 
 
     return 0;

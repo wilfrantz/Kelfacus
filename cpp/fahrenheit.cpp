@@ -9,7 +9,7 @@
 
 #include "data.h"
 
-int Var::Convert_from_Fahrenheit(std::string arg){
+int Var::Convert_from_Fahrenheit(std::string arg)const{
 
     // class object.
     Var obj;

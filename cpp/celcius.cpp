@@ -10,7 +10,7 @@
 #include "data.h"
 
 
-int Var::Convert_from_Celcius(std::string arg){
+int Var::Convert_from_Celcius(std::string arg)const{
 
 	// Class Var object.
 	Var obj;

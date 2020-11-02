@@ -7,7 +7,7 @@
 // celsius to Kelvin function takes in the returned 
 // value from data validation function to convert it to
 // Kelvin and send the result to stdout
-int Var::Convert_from_Kelvin(std::string arg){
+int Var::Convert_from_Kelvin(std::string arg)const{
 
     // Class object
     Var obj;

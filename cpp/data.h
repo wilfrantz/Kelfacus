@@ -23,10 +23,10 @@ class Var {
 		float getKelvin(){return kelvin; }
 
 		// Member functions declaration.
-		int Convert_from_Fahrenheit(std::string);
-		int Convert_from_Kelvin(std::string);
-		int print (Var*);
-		int Convert_from_Celcius(std::string);
+		int Convert_from_Fahrenheit(std::string)const;
+		int Convert_from_Kelvin(std::string)const;
+		int print(Var*)const;
+		int Convert_from_Celcius(std::string)const;
 
 	private:
 		float celcius, fahrenheit, kelvin;

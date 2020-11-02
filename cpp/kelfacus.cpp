@@ -7,13 +7,13 @@
 
 #include <iostream>
 
-#include "data.h"
+#include "data.hpp"
 
 int main(int argc, char** argv){
 
 	// Control flow
 	if (argc != 3){
-		std::cout <<"Wrong number of arguments"<<std::endl;
+		std::cerr <<"Wrong number of arguments"<<std::endl;
 		exit(1);
 	}
 	for (int i = 1; i < argc; i+=2) {
@@ -22,8 +22,9 @@ int main(int argc, char** argv){
 			std::cerr <<"\nBad option: switch character should be '-'"<<std::endl;
 			exit(2);
 		}
-		std::string argument = argv[2];
-		Var obj;
+		// std::string argument = argv[2];
+		float argument = std::strtof(argv[2], NULL);
+			Var obj;
 		switch (argv[i][1]){
 			case 'c' : obj.Convert_from_Celcius(argument);
 				   break;

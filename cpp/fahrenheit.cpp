@@ -7,27 +7,19 @@
 
 #include <iostream>
 
-#include "data.h"
+#include "data.hpp"
 
-int Var::Convert_from_Fahrenheit(std::string arg)const{
-
+void Var::Convert_from_Fahrenheit(const float arg)
+{
     // class object.
     Var obj;
-
     // set Fahreneit value.
-    obj.setFahrenheit(stof(arg));
-
+    obj.setFahrenheit(arg);
     // Get Celcius value Formula (32°F − 32) × 5/9 = 0°C
-    obj.setCelcius((obj.getFahrenheit() - 32) * 5/9);
-
+    obj.setCelcius((obj.getFahrenheit() - 32) * 5 / 9);
     // Get the Kelvin value
     // Formula	(32°F − 32) × 5/9 + 273.15 = 273.15K
-    obj.setKelvin((obj.getFahrenheit() - 32) * 5/9 + 273.15);
-
-    // print function call.
+    obj.setKelvin((obj.getFahrenheit() - 32) * 5 / 9 + 273.15);
+    // print  to stdout.
     obj.print(&obj);
-
-
-    return 0;
 }
-

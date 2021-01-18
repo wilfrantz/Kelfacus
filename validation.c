@@ -1,14 +1,15 @@
 
 #include <stdio.h>
-#include "functions.h"
 #include <stdlib.h>
 #include <ctype.h>
+
+
+#include "functions.h"
 
 // Data validation function takes in the user input
 // and an integer which is the return staus of the 
 // scanf function for data processing.
-var data_validation(var value)
-{
+var data_validation(var value) {
     char answer;
     // Data validation.
     if (value.num == 0) { 
